@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cadastro.h"
-#include "matriz.h"
+#include "functions/cadastro.h"
+#include "functions/matriz.h"
+
+//Caminho do Arquivo Cidades.txt: C:\Users\lucas\OneDrive\Documentos\Vscode\Atividades\Trabalhos\ROTAS-AQUI-PERTO\Banco_de_Dados\cidades.txt
 
 int main(void) {
     int escolha;
@@ -24,11 +26,11 @@ int main(void) {
             CadastroCidades(&matrizADJ);
 
             for(int i = 0; i < matrizADJ.n; i++){
-                for (int j = 0; j < matrizADJ.n; j++) {
-                    printf("|%.2lf|", matrizADJ.matriz[i][j]);
-                }
+                printf("|%s|", matrizADJ.nomes[i]);
                 printf("\n");
             }
+
+            system("pause");
             break;
             
         /*case 2:
