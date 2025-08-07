@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cadastro.h"
+#include "matriz.h"
 
 int main(void) {
     int escolha;
+    matrizAdj matrizADJ;
 
     do {
         system("cls");
@@ -19,7 +21,14 @@ int main(void) {
         
         case 1:
             // (chamar aquivo cadastro)
-            CadastroCidades();
+            CadastroCidades(&matrizADJ);
+
+            for(int i = 0; i < matrizADJ.n; i++){
+                for (int j = 0; j < matrizADJ.n; j++) {
+                    printf("|%.2lf|", matrizADJ.matriz[i][j]);
+                }
+                printf("\n");
+            }
             break;
             
         /*case 2:
