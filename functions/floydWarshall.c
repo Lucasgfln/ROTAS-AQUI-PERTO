@@ -15,12 +15,6 @@ int main (void) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             d[i][j] = a[i][j];
-        }
-    }
-
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            d[i][j] = a[i][j];
             if (i == j) p[i][j] = -1;
             else if (a[i][j] < 10000) p[i][j] = i;
             else p[i][j] = -1;
