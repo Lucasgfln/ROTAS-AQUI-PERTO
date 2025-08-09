@@ -107,7 +107,7 @@ int CarregarArquivo(matrizAdj *matrizAdj){
             for (int i = 0; i < n_cidades; i++){
                 printf(" | ");
                 for (int j = 0; j < n_cidades; j++){
-                    printf(" %7.2f ",matrizAdj->matriz[i][j]);
+                    printf(" %.2f ",matrizAdj->matriz[i][j]);
                     if(j < n_cidades - 1){
                         printf("|");
                     }
