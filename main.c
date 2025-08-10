@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include "functions/cadastro.h"
 #include "functions/matriz.h"
+#include "functions/floyd.h"
+#include "functions/exibir.h"
 
-//Caminho do Arquivo Cidades.txt: C:\Users\lucas\OneDrive\Documentos\Vscode\Atividades\Trabalhos\ROTAS-AQUI-PERTO\Banco_de_Dados\cidades.txt
 
 int main(void) {
     int escolha;
@@ -13,11 +14,11 @@ int main(void) {
         escolha = cadastroCidades(&matrizADJ);
     }while (escolha != 1);
 
-    const int N = matrizADJ.n;
+    int N = matrizADJ.n;
     double d[N][N];
     int p[N][N];
     
-    floydWarshall(&matrizADJ,d,p);
+    floydWarshall(&matrizADJ,N,d,p);
 
     do {
         system("cls");
@@ -28,7 +29,7 @@ int main(void) {
         printf("\n > [0] Sair do Programa");
         printf("\n ============================================\n");
         printf(" Opcao: ");
-        scanf("%i",&escolha);
+        scanf("%d",&escolha);
         switch (escolha){
         
         case 1:
@@ -37,42 +38,7 @@ int main(void) {
             break;
             
         case 2:
-            do {
-                printf("\n =========== EXIBIR-MATRIZES ===========");
-                printf("\n > [1] Matriz de Adjacencia");
-                printf("\n > [2] Matriz Distancias Minimas");
-                printf("\n > [3] Matriz de Predecessores");
-                printf("\n > [0] Voltar");
-                printf("\n ================================");
-                printf("\n Opcao: ");
-                scanf("%d", &escolha);
-
-                switch(escolha) {
-                case 1:
-                    system("cls");
-                    exibirMatrizAdj(&matrizADJ);                    
-                    break;
-
-                case 2:
-                    system("cls");
-                    exibirMatrizD(N,d);                   
-                    break;
-
-                case 3:
-                    system("cls");
-                    exibirMatrizP(N,p);                   
-                    break;
-
-                case 0:
-                    break;
-                
-                default:
-                    printf("!! Opção Inválida !!");
-                    break;
-                }
-
-            } while (escolha != 0);
-
+            Exibir
             break;
 
         /*case 3: 

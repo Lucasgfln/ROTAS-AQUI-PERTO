@@ -116,7 +116,7 @@ int cadastroManual(matrizAdj *m){
 }
 
 int carregarArquivo(matrizAdj *matrizAdj){
-    FILE *arquivo;
+    FILE *arquivo = NULL;
     
     do{
         system("cls");

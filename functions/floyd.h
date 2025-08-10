@@ -2,10 +2,8 @@
 #define FLOYD_H
 
 #include "matriz.h"
-#include <stdio.h>
 
-void floydWarshall (matrizAdj *m, double d[m->n][m->n], int p[m->n][m->n]) {
-    const int N = m->n;
+void floydWarshall(matrizAdj *m, int N,double d[][N], int p[][N]) {
 
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
