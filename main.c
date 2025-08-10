@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "functions/cadastro.h"
 #include "functions/matriz.h"
-#include "functions/floyd.h"
 
 //Caminho do Arquivo Cidades.txt: C:\Users\lucas\OneDrive\Documentos\Vscode\Atividades\Trabalhos\ROTAS-AQUI-PERTO\Banco_de_Dados\cidades.txt
 

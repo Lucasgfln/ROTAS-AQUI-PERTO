@@ -67,4 +67,6 @@ void exibirMatrizP(int n, int matriz[n][n]){
     printf("\n");
 }
 
+void floydWarshall (matrizAdj *m, double d[m->n][m->n], int p[m->n][m->n]);
+
 #endif

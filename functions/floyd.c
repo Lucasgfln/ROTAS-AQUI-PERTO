@@ -27,13 +27,6 @@ void floydWarshall (matrizAdj *m, double d[m->n][m->n], int p[m->n][m->n]) {
             }
         }
     }
-
-
-    exibirMatrizAdj(m);
-
-    exibirMatrizD(N, d);
-
-    exibirMatrizP(N, p);
 }
 
 #endif
