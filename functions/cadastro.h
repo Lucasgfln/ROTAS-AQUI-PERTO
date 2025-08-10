@@ -12,7 +12,7 @@
 
 //void CadastroManual();
 
-int CadastroCidades(matrizAdj *matrizAdj){
+int cadastroCidades(matrizAdj *matrizAdj){
     int escolha;
 
     system("cls");
@@ -26,10 +26,10 @@ int CadastroCidades(matrizAdj *matrizAdj){
 
     switch (escolha){
     case 1:
-        //CadastroManual();
+        escolha = cadastroManual(matrizAdj);
         break;
     case 2:
-        CarregarArquivo(matrizAdj);
+        escolha = carregarArquivo(matrizAdj);
         break;
     case 0:
         break;
@@ -40,16 +40,82 @@ int CadastroCidades(matrizAdj *matrizAdj){
         break;
     }
 
-    return 0;
+    return escolha;
 }
 
-/*void CadastroManual(){
+int cadastroManual(matrizAdj *m){
 
-    return 0;
+  do{
+    system("cls");
 
-}*/
+    printf("- - - CADASTRO MANUAL - - -\n");
+    
+    printf("\n-> Quantas Cidades deseja cadastrar?: ");
+    scanf("%i", &m->n);
 
-int CarregarArquivo(matrizAdj *matrizAdj){
+    int n_cidades = m->n;
+
+    for(int i = 0; i < n_cidades; i++){
+      printf("\n--> Qual cidade você deseja Cadastrar?: ");
+      scanf(" %[^\n]", m->nomes[i]);
+    }
+
+    printf("\n* Agora, cadastre a distancia entre os municípios.\n");
+  
+    for(int i = 0; i < n_cidades; i++){
+      for(int j = i; j < n_cidades; j++){
+        if(i==j){
+          m->matriz[i][j] = 0;
+          
+        } else {
+          printf("\n> De %s Para %s: ", m->nomes[i], m->nomes[j]);
+          scanf("%lf", &m->matriz[i][j]);
+          m->matriz[j][i] = m->matriz[i][j];
+        }
+      }
+    }
+    
+    printf("\n");
+
+//================================ Exbição =======================================
+    
+    system("cls");
+
+    printf("\n -> ==== MATRIZ CADASTRADA COM SUCESSO !! ====\n");
+
+    exibirMatrizAdj(m);
+    
+    int escolhas;
+    printf("\n ==== Deseja Confirmar Valores? ====");
+    printf("\n > [1] Confirmar");
+    printf("\n > [2] Alterar");
+    printf("\n > [0] Cancelar ");
+    printf("\n ===================================");
+    
+    printf("\n -> Opcao: ");
+    scanf("%i", &escolhas);
+
+    system("cls");
+
+    switch(escolhas){
+      case 1:
+        printf("\n* Valores Confirmados!");
+        salvarMatriz();
+        return 1;
+        break;
+      case 2:
+        printf("\n* Alterar Valores!");
+        break;
+      case 0:
+        printf("\n* Valores Cancelados!");
+        return 0;
+        break;
+    }
+      
+  }while(1);
+}
+
+int carregarArquivo(matrizAdj *matrizAdj){
     FILE *arquivo;
     
     do{
@@ -92,36 +158,13 @@ int CarregarArquivo(matrizAdj *matrizAdj){
                 }
             }
 //===================================================== EXIBIÇÃO =====================================================
-            // Exibição - Numero de cidades
-            system("cls");
-            printf("\n -> Aquivo acessado: %s\n",origem);
-
-            // Exibição - Lista de noomes de cidades
-            printf("\n > LISTA-DE-CIDADES:\n"); 
-            for (int i = 0; i < n_cidades; i++){
-                printf(" %.02d. %s",i+1,matrizAdj->nomes[i]);
-            }
-            
-            // Exibição - Matriz de Adjacentes
-            printf("\n > MATRIZ-DE-ADJACENTES:\n\n");
-            for (int i = 0; i < n_cidades; i++){
-                printf(" | ");
-                for (int j = 0; j < n_cidades; j++){
-                    printf(" %.2f ",matrizAdj->matriz[i][j]);
-                    if(j < n_cidades - 1){
-                        printf("|");
-                    }
-                }
-                printf(" |\n");
-            }
-            printf("\n");
-            
+            exibirMatrizAdj(matrizAdj);
             fclose(arquivo);
             system("pause");
             system("cls");            
             // vai executar o algoritimo?
 
-            return 0;
+            return 1;
 
         } else {
             int escolhas;
@@ -146,5 +189,30 @@ int CarregarArquivo(matrizAdj *matrizAdj){
     }while (1);
 }
 
+void salvarMatriz(){
+    int salvar;
+    char nome_arquivo[1000];
+
+    printf("\n-> Deseja salvar os dados em um arquivo?");
+    printf("\nSim = 1");
+    printf("\nNão = 0");
+    printf("\nSalvar?: ");
+    scanf("%i", &salvar);
+
+    if(salvar == 1){
+      printf("\n> Digite o nome do arquivo (ex.:arquivo.txt): ");
+      scanf("%s", nome_arquivo);
+
+      FILE *arquivo = NULL;
+
+      arquivo = fopen(nome_arquivo, "w");
+
+        if(arquivo != NULL){
+          printf("** arquivo aberto com sucesso **");
+        }
+    } else {
+      printf("Seus dados não foram salvos em arquivo.");
+    }
+}
 
 #endif
